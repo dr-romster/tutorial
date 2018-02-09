@@ -7,4 +7,4 @@ log/*.log.[0-9]
 assets/photoshop/
 assets/videos/
 !assets/videos/tous_*.mp4
-tempfile2.txt
+textfile2.txt
