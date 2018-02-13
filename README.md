@@ -1,5 +1,7 @@
-# tutorial
-#####Lynda.com GitHub tutorial
+# Git Hub Tutorial
+__Lynda.com GitHub tutorial__
+
+My own notes from the tutorial by Keving Skoglund, formatted and updated in a Readme.md and used as a practice for the lessons in the tutorial
 
 
 git stores configs at three levels
@@ -54,7 +56,7 @@ git log --author" "
 ```
 `git log --grep=" "` - any text that matches what's in the quotes (global regular expression)
 
-#####three tree architecture
+###Three tree architecture
 
 - working and respoistory
 - staging index - make chagnes in staggered, change steps. Usfeul when you are making multiple changes / steps to multiple files
@@ -76,7 +78,8 @@ cd heads
 `git status` - tells us our status of the three branches and where the head is pointing,
 to add new files to git tracking use git add 
 
-#####to compare changes between what is in the repository and the working directoy
+###To compare changes between what is in the repository and the working directoy
+
 ```git diff
 git diff --staged 
 ```
@@ -105,7 +108,8 @@ git checkout -- index.html
 unstaging from the staging area
 `git reset HEAD resources.html`
 
-#####Undoing commits 
+###Undoing commits 
+
 - we can only change the last commit (the one that HEAD points do) not furtherback as this breaks the _SHA-1_ hash chain
 ```
 git commit --ammend -m 'message'
@@ -132,13 +136,14 @@ git .cat/HEAD
 the old commits are still there after a hard reset if you still have the later hash numbers using 
 `git reset HEAD (hash)`
 
-#####Removing files from working directory
+###Removing files from working directory
 
 `git clean -n ` - tells you as a trial run what will be removed but does not remove them - just tells you what
 
 `git clean -f` - destrucively, forced removal
 
-#####Auto ignore files
+###Auto ignore files
+
 `.gitignore`
 	this will take * ? [aeiou] [0-9] and negate expressions with !
 	ignore all files in directory using a trailing #
@@ -162,14 +167,16 @@ useful when people are working on different platforms
 to remove file from the staging area to allow you to do a staged commit
 `git rm --cached`
 
-#####tracking an empty directory with git
+###Tracking an empty directory with git
+
 git only tracks files, so to do this you put a small file in it which is by convention either .gitignore or .gitkeep
 
 you can do this from the command line using `touch` which adds an empty named file to the target directory
 
 `touch assets/pdfs/.gitkeep`
 
-#####Exploring the tree
+###Exploring the tree
+
 tree-ish
 	use the full or partial component of a hash to reference a commit
 	the HEAD pointer 
@@ -202,7 +209,8 @@ git log --grep='Temp'
 
 `git show (sha) - shows the diff, also takes --format=`
 
-#####comparing commits
+###Comparing commits
+
 `git diff (sha) ` - compares current working directory with previous point in time
 ```
 git diff (sha) (Filename)
@@ -214,7 +222,7 @@ git diff --stat --summary (sha)..HEAD -b or -w
  (-b wil ignore whitespace changes, -w will ignore all space change, 
 equivalent to --ignore_all_space)
 
-#####BRANCHING
+##Branching
 
 Cheap in terms of memory and space
 good for isolating features to enable collaboration
@@ -257,7 +265,8 @@ deleting branches
 
 `source ~/.bash_profile `
 
-#####to merge 
+###To merge 
+
 make sure you are on master branch
 
 ```
@@ -283,7 +292,8 @@ if the head is in the ancestry of the the master branch then it can merge by fas
 `git merge --ff-only branch` (only merge if you can do it ff)
 
 
-#####Merge Conflicts
+###Merge Conflicts
+
 Two changes in the same line in different branches
 three choices:
 1. 	abort merge  	 `git merge --abort`
@@ -296,7 +306,8 @@ make your changes to one of them, delete these added bits
 add the changed file to git and commit them
 you won't need to add a message and the commit will complete the merge
 
-#####Good practice tips
+###Good practice tips
+
 1.	keep lines short
 2.	keep commits small and focused
 3.	beware of stary edits to whitesapce 
@@ -312,7 +323,7 @@ m -- m --  m -- m --m --m -- m -- m
 	\		\	        /
 	  b -- b --b -- b --b -- b -- b --b
 
-#####The stash
+###The stash
 
 This is a special 4th zone which are similar to commits but are not assigned a
 _SHA_
@@ -330,7 +341,7 @@ to inspect what is in the stash
 
 git will try and bring stashes into your working directory, but this can generate conflicts
 
-#####Pulling out stash
+###Pulling out stash
 `git stash pop {stash ref}`		- also removes it from the stash - defaults to first item if not specified
 `git stash apply	{stash_ref}	`- leaves a copy in the stash e.g. if you want to apply to multiple branches
 
@@ -339,7 +350,7 @@ Deleting stash
 `git stash drop {stash ref}
 git stash clear  all items in the stash`
 
-####Remotes
+###Remotes
 
 Push and fetch
 origin/master branch mirrors the remote server
