@@ -183,30 +183,40 @@ tree-ish
 	the HEAD pointer 
 
 parent commit
-	-HEAD^, -hash^, master^
+-_HEAD^_, -hash^, master^
 grandparent commits
-	-HEAD^^ or -HEAD~2 or master^^ etc
+- _HEAD_^^ or -`HEAD~2` or master^^ etc
 greatgrandparent commits
-	-HEAD^^^ or -HEAD~3 or hashes
+- _HEAD^^^_ or -`HEAD~3` or hashes
 
 `git ls-tree {treeish}`
 
-expanding on the git log
-to see log in single line form
+_expanding on the git log_
+
+to see log in single line form:
+
 `git log --oneline ` [also takes --since, until  -n for last few ]
+
 `git log --since="2012-06-20" --until="3 days" ` (or 3.days -wihtout "")
+
 ```
 git log -5
 git log --author=" "
 git log --grep='Temp'
 ```
 `git log 2907d12...acf898974 `(from SHA-1 (1) until SHA-1 (2))
+
 `git log 0demfdf .. index.html` (what affects particular file from a SHA-1)
+
 `git log -p (sha-1) (file.html)` - will list all the changes to the file
+
 `git log --stat `(what changed in each one)
+
 `git log --summary` (can be combined with --stat)
+
 `git log --format=oneline `(gives the full SHA in oneline)
-`git log --graph `(shows branches and merges) combines well with --oneline --decorate
+
+`git log --graph `(shows branches and merges) combines well with `--oneline --decorate`
 
 `git show (sha) - shows the diff, also takes --format=`
 
@@ -220,8 +230,8 @@ git diff (sha)..(sha2) (filename)
 git diff (sha)..HEAD^  - or any other treeish
 git diff --stat --summary (sha)..HEAD -b or -w
 ```
- (-b wil ignore whitespace changes, -w will ignore all space change, 
-equivalent to --ignore_all_space)
+ (`-b` wil ignore whitespace changes, `-w` will ignore all space change, 
+equivalent to `--ignore_all_space`)
 
 ## Branching
 
@@ -257,9 +267,9 @@ using the `--color-words`  option will allow you to see the changes side by side
 
 deleting branches
 
-`git branch -m new_feature seo_title`
+`git branch -m new_feature seo_title` - thise renames the brnach
 
-`git branch -d (branch_to_delete)` - can force a delete with -D if you have not merged it yet
+`git branch -d {branch_to_delete}` - can force a delete with -D if you have not merged it yet
 
 `export PS1='\W$(__git_ps1 "($s)") > ' `
 - this will configure the prompt to show the working directory and current branch in brackets which is pretty handy, if this line is already in your ~/.bash_profile then to obtain this prompt when you start terminal type:
