@@ -329,10 +329,11 @@ you won't need to add a message and the commit will complete the merge
 You can continue to edit branches even after merging them
 
 If the master is changing lots, merge master back into the branch or else you'll get too far out of sync. 'tracking' e.g.
-
+```
 m -- m --  m -- m --m --m -- m -- m
 	\		\	        /
 	  b -- b --b -- b --b -- b -- b --b
+```
 
 ### The stash
 
