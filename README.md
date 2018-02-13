@@ -56,7 +56,7 @@ git log --author" "
 ```
 `git log --grep=" "` - any text that matches what's in the quotes (global regular expression)
 
-###Three tree architecture
+### Three tree architecture
 
 - working and respoistory
 - staging index - make chagnes in staggered, change steps. Usfeul when you are making multiple changes / steps to multiple files
@@ -78,16 +78,17 @@ cd heads
 `git status` - tells us our status of the three branches and where the head is pointing,
 to add new files to git tracking use git add 
 
-###To compare changes between what is in the repository and the working directoy
+### To compare changes between what is in the repository and the working directoy
 
-```git diff
+```
+git diff
 git diff --staged 
 ```
-__to look at changes between reposiroty and staging directory. once comiited this clears__
+to look at changes between repositoty and staging directory. once comiited this is cleared
 
 `git rm` # to remove files ready for commit
 
-renaming files in git uses `git mv`
+renaming files in git uses `git mv`. In UNIX moving is the same as renaming.
 ```
 git mv second_file.txt secondary_file.txt
 ```
@@ -108,7 +109,7 @@ git checkout -- index.html
 unstaging from the staging area
 `git reset HEAD resources.html`
 
-###Undoing commits 
+### Undoing commits 
 
 - we can only change the last commit (the one that HEAD points do) not furtherback as this breaks the _SHA-1_ hash chain
 ```
@@ -136,13 +137,13 @@ git .cat/HEAD
 the old commits are still there after a hard reset if you still have the later hash numbers using 
 `git reset HEAD (hash)`
 
-###Removing files from working directory
+### Removing files from working directory
 
 `git clean -n ` - tells you as a trial run what will be removed but does not remove them - just tells you what
 
 `git clean -f` - destrucively, forced removal
 
-###Auto ignore files
+### Auto ignore files
 
 `.gitignore`
 	this will take * ? [aeiou] [0-9] and negate expressions with !
@@ -167,7 +168,7 @@ useful when people are working on different platforms
 to remove file from the staging area to allow you to do a staged commit
 `git rm --cached`
 
-###Tracking an empty directory with git
+### Tracking an empty directory with git
 
 git only tracks files, so to do this you put a small file in it which is by convention either .gitignore or .gitkeep
 
@@ -175,7 +176,7 @@ you can do this from the command line using `touch` which adds an empty named fi
 
 `touch assets/pdfs/.gitkeep`
 
-###Exploring the tree
+#### Exploring the tree
 
 tree-ish
 	use the full or partial component of a hash to reference a commit
@@ -209,7 +210,7 @@ git log --grep='Temp'
 
 `git show (sha) - shows the diff, also takes --format=`
 
-###Comparing commits
+### Comparing commits
 
 `git diff (sha) ` - compares current working directory with previous point in time
 ```
@@ -222,7 +223,7 @@ git diff --stat --summary (sha)..HEAD -b or -w
  (-b wil ignore whitespace changes, -w will ignore all space change, 
 equivalent to --ignore_all_space)
 
-##Branching
+## Branching
 
 Cheap in terms of memory and space
 good for isolating features to enable collaboration
@@ -265,7 +266,7 @@ deleting branches
 
 `source ~/.bash_profile `
 
-###To merge 
+### To merge 
 
 make sure you are on master branch
 
@@ -292,7 +293,7 @@ if the head is in the ancestry of the the master branch then it can merge by fas
 `git merge --ff-only branch` (only merge if you can do it ff)
 
 
-###Merge Conflicts
+#### Merge Conflicts
 
 Two changes in the same line in different branches
 three choices:
@@ -306,7 +307,7 @@ make your changes to one of them, delete these added bits
 add the changed file to git and commit them
 you won't need to add a message and the commit will complete the merge
 
-###Good practice tips
+## Good practice tips
 
 1.	keep lines short
 2.	keep commits small and focused
@@ -323,7 +324,7 @@ m -- m --  m -- m --m --m -- m -- m
 	\		\	        /
 	  b -- b --b -- b --b -- b -- b --b
 
-###The stash
+### The stash
 
 This is a special 4th zone which are similar to commits but are not assigned a
 _SHA_
@@ -341,7 +342,7 @@ to inspect what is in the stash
 
 git will try and bring stashes into your working directory, but this can generate conflicts
 
-###Pulling out stash
+##### Pulling out stash
 `git stash pop {stash ref}`		- also removes it from the stash - defaults to first item if not specified
 `git stash apply	{stash_ref}	`- leaves a copy in the stash e.g. if you want to apply to multiple branches
 
@@ -350,7 +351,7 @@ Deleting stash
 `git stash drop {stash ref}
 git stash clear  all items in the stash`
 
-###Remotes
+### Remotes
 
 Push and fetch
 origin/master branch mirrors the remote server
@@ -372,3 +373,138 @@ you can select which branch you want using `-b`
 cat .git/config wil tell you this is the case under the [remote] heading
 
 
+#### Fetching changes from GitHub
+
+cloned versions do not track and sync automatically, you need to do a fetch 
+
+`git fetch tutorial` - repository name
+
+__Tips:__
+Fetches are never harmful, so fetch before you start to work. 
+Also fetch before you push in case something was pushed the conflicts
+Fetch often.
+
+to merge a fetched a origin/master branch from the remote server then you need to do either a fast forward or branched merged depending on your progress. Potential for conflicts which need resolving in the same way as any branch merge
+
+```
+git branch -a
+git diff origin/master..master
+```
+`git diff tutorial/master..master` - in my case, to inspect the changes
+
+merge:
+
+`git merge origin/master`
+
+this merge is with origin/master and not the repository master so you need to push it back up for the repository to recognise this.
+
+`git pull` = `git fetch` + `git merge` 
+
+#### Checkout remote branches
+
+`git branch -r` - to see remote branches
+
+Remote branches are just like normal branches except that we can't check it out (ie make it our working directory)
+
+`git branch {remote_branch} {origin/remote_branch}`
+`git checkout - b {remote_branch} {origin/remote_branch}`
+git will create a new branch locally which should track the remote branch. we can check this by inspecting the branch headings in the config file
+
+`cat .git/config`
+
+to remove this branch locally:
+
+`git -d {remote_branch}`
+
+#### Pushing to an updated remote branch
+
+Git never tries to do a merge during a push. That's why you fetch first to update your origin/master then merge then push again
+
+To delete a remote branch use `:`
+
+`git push tutorial :{remote_branch}`
+
+when you push a branch git is actually doing `git push tutorial {local_branch}:{remote_branch}`
+pushing a _non-prefixed_ `:` uploads 'nothing' to it, deleting it. This does not delete the local branch. 
+
+another way of doing this is:
+`git push origin --delete {remote_branch}`
+
+__Enabling Collaborators__
+
+Go to project homepage -> admin -> collaborators, and add their GitHub username
+
+For Open Source projects you can make a 'fork' to prevent endless conflicts
+The 'fork' is a local cloned version, and once you're done you submit a 'Pull Request'
+
+
+Tips / example workdlow:
+```
+git checkout master
+git fetch
+git merge origin/master
+git checkout -b {new_branchwork}
+git add {new_workfile.ext}
+git commit -m "new work done"
+git fetch
+git push -u origin "updated draft of workfile.ext"
+```
+
+Collaborators workflow:
+```
+git checkout master
+git fetch
+git branch -r
+git merge origin/master
+git checkout -b new_branchwork origin/new_branchwork
+git log
+git show {SHA commit}
+git commit -am "edits"
+git fetch
+git push
+```
+Back to my workflow:
+
+`git fetch`
+`git log -p new_branch..origin/new_branch` - review the changes in patch form
+```
+git merge origin/new_branch
+git checkout master
+git fetch
+get merge origin/master
+git merge new_branch
+git push 
+```
+
+
+### Aliases for common GitHub commands
+
+Put these in the user global config file
+```
+ls -la ~/
+git config --global alias.st status
+git config --gloval alias.{shortcut} {command_name or "command name"}
+```
+
+to see the aliases you've set
+
+`cat ~/.gitconfig`
+
+commonly used aliases:
+```
+co checkout
+ci commit
+br branch
+df diff
+dfs "diff --staged"
+dfc "diff --cached"
+logg "log --graph --decorate --oneline --abbrev-commit --all"
+```
+
+### Git self hosting
+
+Gitolite - http://github.com/sitarmac/gitolite
+
+---
+
+##### fin
