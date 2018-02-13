@@ -55,10 +55,9 @@ git log --author" "
 `git log --grep=" "` - any text that matches what's in the quotes (global regular expression)
 
 #####three tree architecture
-	- working and repository
-	- staging index -- make changes in staggered change steps 
-				useful when you are making multiple changes / steps
-				to multiple files
+
+- working and respoistory
+- staging index - make chagnes in staggered, change steps. Usfeul when you are making multiple changes / steps to multiple files
 
 Git uses checksums for each change set based on the changes committed
 the algorithm is __SHA-1__ hash and produces a 40 chr hash value
@@ -106,7 +105,7 @@ git checkout -- index.html
 unstaging from the staging area
 `git reset HEAD resources.html`
 
-#####undoing commits 
+#####Undoing commits 
 - we can only change the last commit (the one that HEAD points do) not furtherback as this breaks the _SHA-1_ hash chain
 ```
 git commit --ammend -m 'message'
@@ -133,13 +132,13 @@ git .cat/HEAD
 the old commits are still there after a hard reset if you still have the later hash numbers using 
 `git reset HEAD (hash)`
 
-#####removing files from working directory
+#####Removing files from working directory
 
 `git clean -n ` - tells you as a trial run what will be removed but does not remove them - just tells you what
 
 `git clean -f` - destrucively, forced removal
 
-auto ignore files
+#####Auto ignore files
 `.gitignore`
 	this will take * ? [aeiou] [0-9] and negate expressions with !
 	ignore all files in directory using a trailing #
@@ -149,7 +148,7 @@ creating the .gitignore in terminal can be done with nano
 to just view the .gitignore you can use `cat`
 `cat .gitignore`
 
-useful things to go in a .gitingore file are 
+Useful things to go in a .gitingore file are:
 - compiled source code, zip/.gz
 - logs / OS created files
 - iso / dmg files
