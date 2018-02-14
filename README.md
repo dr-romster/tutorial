@@ -26,7 +26,7 @@ cat .gitconfig
 to change the text editor to Textmate or nano
 ```
 git config --global core.editor "mate -wl1"  
-git confif --global core.editor "nano"
+git config --global core.editor "nano"
 ```
 to change colours when outputting its messages, so its not all monochrome
 ```
