@@ -317,13 +317,15 @@ make your changes to one of them, delete these added bits
 add the changed file to git and commit them
 you won't need to add a message and the commit will complete the merge
 
-## Good practice tips
+---
 
-1.	keep lines short
-2.	keep commits small and focused
-3.	beware of stary edits to whitesapce 
+## Good practice tips 
+
+1.	Keep lines short
+2.	Keep commits small and focused
+3.	Beware of stray edits to whitesapce 
 		space / tab / line returns or else you will get merge conflicts
-4.	merge often
+4.	Merge often
 		less likely to precipitate conflicts
 		
 You can continue to edit branches even after merging them
@@ -334,6 +336,8 @@ m -- m --  m -- m --m --m -- m -- m
 	\		\	        /
 	  b -- b --b -- b --b -- b -- b --b
 ```
+
+---
 
 ### The stash
 
@@ -449,7 +453,7 @@ For Open Source projects you can make a 'fork' to prevent endless conflicts
 The 'fork' is a local cloned version, and once you're done you submit a 'Pull Request'
 
 
-Tips / example workdlow:
+Tips / example workflow:
 ```
 git checkout master
 git fetch
