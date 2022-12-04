@@ -498,7 +498,7 @@ Put these in the user global config file
 ```
 ls -la ~/
 git config --global alias.st status
-git config --gloval alias.{shortcut} {command_name or "command name"}
+git config --global alias.{shortcut} {command_name or "command name"}
 ```
 
 to see the aliases you've set
