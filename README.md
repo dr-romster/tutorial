@@ -516,6 +516,8 @@ dfc "diff --cached"
 logg "log --graph --decorate --oneline --abbrev-commit --all"
 ```
 
+`git config --global alis.logg "log --graph --decorate --oneline --abbrev-commit --all"
+
 ### Git self hosting
 
 Gitolite - http://github.com/sitarmac/gitolite
