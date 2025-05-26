@@ -517,7 +517,8 @@ logg "log --graph --decorate --oneline --abbrev-commit --all"
 ```
 
 Make the tree pretty and easy to read
-`git config --global alis.logg "log --graph --decorate --oneline --abbrev-commit --all"`
+
+`git config --global alias.logg "log --graph --decorate --oneline --abbrev-commit --all"`
 
 ### Git self hosting
 
